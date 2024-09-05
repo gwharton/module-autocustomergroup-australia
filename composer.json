@@ -1,0 +1,19 @@
+{
+    "name": "gwharton/module-autocustomergroup-australia",
+    "type": "magento2-module",
+    "require": {
+        "magento/framework": "*",
+        "gwharton/module-autocustomergroup": "*"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Gw\\AutoCustomerGroupAustralia\\": ""
+        }
+    }
+}
