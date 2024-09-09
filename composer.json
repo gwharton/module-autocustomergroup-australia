@@ -6,6 +6,8 @@
         "ext-soap": "*",
         "gwharton/module-autocustomergroup": "*",
         "magento/framework": "*",
+        "magento/module-catalog": "*",
+        "magento/module-directory": "*",
         "magento/module-quote": "*",
         "magento/module-store": "*",
         "psr/log": "*"

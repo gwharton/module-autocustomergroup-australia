@@ -1,15 +1,14 @@
 <?php
+
 namespace Gw\AutoCustomerGroupAustralia\Model;
 
 use Exception;
-use GuzzleHttp\Exception\BadResponseException;
 use Gw\AutoCustomerGroup\Api\Data\TaxIdCheckResponseInterface;
 use Gw\AutoCustomerGroup\Api\Data\TaxIdCheckResponseInterfaceFactory;
 use Gw\AutoCustomerGroup\Api\Data\TaxSchemeInterface;
 use Magento\Directory\Model\Currency;
 use Magento\Directory\Model\CurrencyFactory;
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Framework\Webapi\Rest\Request;
 use Magento\Quote\Model\Quote;
 use Magento\Store\Model\Information as StoreInformation;
 use Magento\Store\Model\ScopeInterface;
