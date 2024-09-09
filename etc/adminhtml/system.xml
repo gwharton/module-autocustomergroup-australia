@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="autocustomergroup">
+            <group id="australiagst" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Australia GST for Non Residents Scheme</label>
+                <comment><![CDATA[
+<div class="autocustomergroup-schemeoverview">
+<p>This Scheme applies to shipments being sent from anywhere in the world to Consumers (Not B2B transactions) in Australia.</p>
+<p>As of 1st July 2017, all sellers must (if their turnover to Australia exceeds 75,000 AUD) register for the Australia GST for Non Residents scheme,
+    and collect GST for B2C transactions at the point of sale and remit to the Australian Government.</p>
+<p>The module assumes the following rules :</p>
+<ul>
+    <li><b>Domestic</b> - For shipments within Australia, normal Australia GST rules apply.</li>
+    <li><b>Import B2B</b> - For shipments from outside of Australia to Australia and the buyer presents a validated for GST ABN number, then
+        GST should not be charged.</li>
+    <li><b>Import Taxed</b> - For imports into Australia, where the total goods value is equal to or below 1,000 AUD, then
+        GST should be charged.</li>
+    <li><b>Import Untaxed</b> - For imports into Australia, where the total goods value is above 1,000 AUD, then GST should
+        NOT be charged and instead will be collected at the Australia border along with any duties due.</li>
+</ul>
+<p>For the Australia GST for Non Residents Scheme, the following applies (This can be confirmed
+    <a href="https://www.ato.gov.au/businesses-and-organisations/international-tax-for-business/gst-on-imported-goods-and-services/gst-on-low-value-imported-goods"
+    target="_blank">here</a>) :</p>
+<ul>
+    <li>Total Goods value is the sum of the sale price of all items sold (including any discounts)</li>
+    <li>When determining whether GST should be charged (GST Threshold) Shipping or Insurance Costs are not included in the value of the goods.</li>
+    <li>When determining the amount of GST to charge the Goods value does include Shipping and Insurance Costs.</li>
+</ul>
+<p>The <a href="https://www.ato.gov.au/businesses-and-organisations/international-tax-for-business/gst-on-imported-goods-and-services/gst-on-low-value-imported-goods" target="_blank">GST on low value imported goods</a>
+    guide details how to handle shipments that contain multiple low value items that will be shipped together, that when combined present an order
+    value that is above 1,000 AUD. In this case, even though individual items may be classed as low value items and would attract GST, the value
+    of the entire shipment is above the threshold and VAT should not be charged at the point of sale.</p>
+<p>More information on the scheme can be found on the
+    <a href="https://www.ato.gov.au/businesses-and-organisations/international-tax-for-business/gst-on-imported-goods-and-services/what-to-do-as-a-non-resident-business" target="_blank">Australian Tax Office Website</a></p>
+    <p>Credentials for the Australian Tax Office ABN checker API can be obtained by signing up on the <a href="https://abr.business.gov.au/Tools/WebServices" target="_blank">Australian Business Register Website</a>.</p>
+<p>If the customer enters a valid format AU ABN number at checkout, the number will be validated with the Australian Business Register. Credentials
+    for the Australian Business Register API can be obtained by signing up on the <a href="https://abr.business.gov.au/" target="_blank">Australian Business Register Website</a>.</p>
+</div>
+                    ]]></comment>
+                <depends>
+                    <field id="autocustomergroup/general/enabled">1</field>
+                </depends>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="frontendprompt" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Tax Identifier Field - Customer Prompt</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="validate_online" translate="label" type="select" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Validate Online</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[
+                        <ul>
+                        <li>Yes : GST number is checked with the ATO's Australian Business Register.</li>
+                        <li>No : Only the format of the ABN Number is checked.</li>
+                        </ul>
+                        ]]></comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="apiguid" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>ABN API GUID</label>
+                    <depends>
+                        <field id="validate_online">1</field>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="registrationnumber" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>ATO Registration Number</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="importthreshold" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Import GST Threshold (AUD)</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="usemagentoexchangerate" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Use Magento Exchange Rate</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="exchangerate" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Exchange Rate</label>
+                    <comment>
+                        <![CDATA[
+                        The exchange rate to convert from AUD to Store Base Currency. It is recommended to use the Australian Tax Office exchange rates, which can be found on the
+                        <a href="https://www.ato.gov.au/Rates/Foreign-exchange-rates/?page=2#Monthly_rates" target="_blank">Australian Tax Office Website</a>.
+                        ]]></comment>
+                    <depends>
+                        <field id="usemagentoexchangerate">0</field>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="importthresholdstorecurrency" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1">
+                    <label>Import GST Threshold (Store Base Currency)</label>
+                    <frontend_model>AuGstImportThresholdStoreBaseCurrency</frontend_model>
+                    <comment>The order value above which no GST should be charged. Calculated as the sum of all line items after discount ex Tax.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="domestic" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Customer Group - Domestic</label>
+                    <source_model>Gw\AutoCustomerGroup\Model\Config\Source\Group</source_model>
+                    <comment>Merchant Country is in Australia, Item is being shipped to Australia.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="importb2b" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Customer Group - Import B2B</label>
+                    <source_model>Gw\AutoCustomerGroup\Model\Config\Source\Group</source_model>
+                    <comment>Merchant Country is not in Australia, Item is being shipped to Australia, Validated for GST ABN Number Supplied.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="importtaxed" translate="label" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Customer Group - Import Taxed</label>
+                    <source_model>Gw\AutoCustomerGroup\Model\Config\Source\Group</source_model>
+                    <comment>Merchant Country is not in Australia, Item is being shipped to Australia, Goods Value is below or equal to Import GST Threshold.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="importuntaxed" translate="label" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Customer Group - Import Untaxed</label>
+                    <source_model>Gw\AutoCustomerGroup\Model\Config\Source\Group</source_model>
+                    <comment>Merchant Country is not in Australia, Item is being shipped to Australia, Goods Value is above the Import GST Threshold.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Gw\AutoCustomerGroup\Model\TaxSchemes">
+        <arguments>
+            <argument name="taxSchemes" xsi:type="array">
+                <item name="australiagst" xsi:type="object">Gw\AutoCustomerGroupAustralia\Model\TaxScheme</item>
+           </argument>
+        </arguments>
+    </type>
+    <virtualType name="AuGstImportThresholdStoreBaseCurrency"
+                 type="Gw\AutoCustomerGroup\Block\Adminhtml\ThresholdSummary">
+        <arguments>
+            <argument name="taxScheme" xsi:type="object">Gw\AutoCustomerGroupAustralia\Model\TaxScheme</argument>
+        </arguments>
+    </virtualType>
+</config>

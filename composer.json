@@ -1,9 +1,14 @@
 {
     "name": "gwharton/module-autocustomergroup-australia",
+    "license": "OSL-3.0",
     "type": "magento2-module",
     "require": {
+        "ext-soap": "*",
+        "gwharton/module-autocustomergroup": "*",
         "magento/framework": "*",
-        "gwharton/module-autocustomergroup": "*"
+        "magento/module-quote": "*",
+        "magento/module-store": "*",
+        "psr/log": "*"
     },
     "config": {
         "sort-packages": true

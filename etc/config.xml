@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <autocustomergroup>
+            <australiagst>
+                <enabled>0</enabled>
+                <frontendprompt>GST Registered Businesses, please enter your ABN so we can apply the correct rate of GST to your order.</frontendprompt>
+                <validate_online>0</validate_online>
+                <apiguid></apiguid>
+                <registrationnumber></registrationnumber>
+                <importthreshold>1000</importthreshold>
+                <usemagentoexchangerate>1</usemagentoexchangerate>
+                <exchangerate>1</exchangerate>
+                <domestic>0</domestic>
+                <importb2b>0</importb2b>
+                <importtaxed>0</importtaxed>
+                <importuntaxed>0</importuntaxed>
+            </australiagst>
+        </autocustomergroup>
+    </default>
+</config>
