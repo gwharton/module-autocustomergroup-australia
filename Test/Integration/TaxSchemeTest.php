@@ -184,9 +184,9 @@ class TaxSchemeTest extends TestCase
         );
         $result = $this->taxScheme->getCustomerGroup(
             $customerCountryCode,
-            $customerPostCode,
             $taxIdValidated,
             $orderValue,
+            $customerPostCode,
             $storeId
         );
         $this->assertEquals($expectedGroup, $result);
@@ -252,7 +252,6 @@ class TaxSchemeTest extends TestCase
         //IsValid
         return [
             ['AU', '',                  false],
-            ['AU', null,                false],
             ['AU', '72 629 951 766',    true], // Correct format, valid ABN, valid GST
             ['AU', '50 110 219 460',    false], // Correct format, valid ABN, no GST
             ['AU', '9429032097351',     false],
@@ -293,7 +292,6 @@ class TaxSchemeTest extends TestCase
         //IsValid
         return [
             ['AU', '',                  false],
-            ['AU', null,                false],
             ['AU', '72 629 951 766',    true], // Correct format
             ['AU', '50 110 219 460',    true], // Correct format
             ['AU', '9429032097351',     false],

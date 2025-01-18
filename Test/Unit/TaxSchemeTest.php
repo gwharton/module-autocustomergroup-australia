@@ -2,8 +2,6 @@
 
 namespace Gw\AutoCustomerGroupAustralia\Test\Unit;
 
-use GuzzleHttp\ClientFactory;
-use Gw\AutoCustomerGroup\Model\TaxSchemeHelper;
 use Gw\AutoCustomerGroupAustralia\Model\TaxScheme;
 use Gw\AutoCustomerGroup\Api\Data\TaxIdCheckResponseInterfaceFactory;
 use Magento\Directory\Model\CurrencyFactory;
@@ -51,11 +49,6 @@ class TaxSchemeTest extends TestCase
      */
     private $dateTimeMock;
 
-    /**
-     * @var TaxSchemeHelper|MockObject
-     */
-    private $helperMock;
-
     protected function setUp(): void
     {
         $this->scopeConfigMock = $this->getMockBuilder(ScopeConfigInterface::class)
@@ -82,18 +75,13 @@ class TaxSchemeTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->helperMock = $this->getMockBuilder(TaxSchemeHelper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
         $this->model = new TaxScheme(
             $this->scopeConfigMock,
             $this->loggerMock,
             $this->storeManagerMock,
             $this->currencyFactoryMock,
             $this->taxIdCheckResponseInterfaceFactoryMock,
-            $this->dateTimeMock,
-            $this->helperMock
+            $this->dateTimeMock
         );
     }
 
