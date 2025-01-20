@@ -10,7 +10,8 @@
         "magento/module-directory": "*",
         "magento/module-quote": "*",
         "magento/module-store": "*",
-        "psr/log": "*"
+        "psr/log": "*",
+        "ext-pcre": "*"
     },
     "config": {
         "sort-packages": true
