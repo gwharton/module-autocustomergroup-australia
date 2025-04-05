@@ -132,8 +132,7 @@ class TaxScheme implements TaxSchemeInterface
         );
         if (empty($merchantCountry)) {
             $this->logger->critical(
-                "Gw/AutoCustomerGroupAustralia/Model/TaxScheme::getCustomerGroup() : " .
-                "Merchant country not set."
+                __METHOD__ . " Merchant country not set"
             );
             return null;
         }
@@ -283,7 +282,7 @@ class TaxScheme implements TaxSchemeInterface
         );
         if (empty($apiguid)) {
             $this->logger->critical(
-                "Gw/AutoCustomerGroupUk/Model/TaxScheme::checkTaxId() : API GUID not set."
+                __METHOD__ . " API GUID not set"
             );
             $taxIdCheckResponse->setRequestMessage(__('API GUID not set.'));
             $taxIdCheckResponse->setIsValid(false);
@@ -337,7 +336,7 @@ class TaxScheme implements TaxSchemeInterface
                 $taxIdCheckResponse->setRequestDate('');
                 $taxIdCheckResponse->setRequestMessage(__('Please enter a valid ABN number, where the business is registered for GST.'));
             }
-        } catch (Exception $exception) {
+        } catch (Exception $e) {
             $taxIdCheckResponse->setIsValid(false);
             $taxIdCheckResponse->setRequestSuccess(false);
             $taxIdCheckResponse->setRequestDate('');
@@ -490,9 +489,12 @@ class TaxScheme implements TaxSchemeInterface
                 ->getAnyRate($websiteBaseCurrency);
             if (!$exchangerate) {
                 $this->logger->critical(
-                    "Gw/AutoCustomerGroupAustralia/Model/TaxScheme::getSchemeExchangeRate() : " .
-                    "No Magento Exchange Rate configured for " . self::SCHEME_CURRENCY . " to " .
-                    $websiteBaseCurrency . ". Using 1.0"
+                    __METHOD__ . " No Exchange Rate configured. Using 1.0",
+                    [
+                        'Scheme Currency' => self::SCHEME_CURRENCY,
+                        'Base Currency' => $websiteBaseCurrency,
+
+                    ]
                 );
                 $exchangerate = 1.0;
             }
